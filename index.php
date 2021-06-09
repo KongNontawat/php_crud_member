@@ -10,12 +10,13 @@ $persons = $personObf->getAllpersons();
   <div class="row mt-5">
     <div class="col-12">
       <div class="card">
-        <div class="card-header bg-primary text-white">
+        <div class="card-header bg-primary text-white d-flex justify-content-between">
           <h3>CRUD Member</h3>
+          <a href="form_member.php" class="btn btn-success">Add+</a>
         </div>
         <div class="card-body">
           <table class="table">
-            <thead>
+            <thead class="table-light">
               <tr>
                 <th>#</th>
                 <th>Firstname</th>
@@ -39,8 +40,8 @@ $persons = $personObf->getAllpersons();
                   <td><?= $person['club']?></td>
                   <td><?= $person['salary']?></td>
                   <td>
-                    <a href="save_form_member.php?action=edit&id={<?= $person['id']?>}" class="btn btn-warning">แก้ไข</a>
-                    <a href="save_form_member.php?action=delete&id={<?= $person['id']?>}" class="btn btn-danger">ลบ</a>
+                    <a href="form_member.php?id=<?= $person['id']?>" class="btn btn-warning py-0 px-1"><i class="fas fa-edit"></i></a>
+                    <a href="save_form_member.php?action=delete&id=<?= $person['id']?>" class="btn btn-danger py-0 px-1"><i class="fas fa-trash-alt"></i></a>
                   </td>
                 </tr>
               <?php endforeach;?>
