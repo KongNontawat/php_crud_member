@@ -3,8 +3,28 @@ require_once 'Db_conn.php';
 
 class Person extends Db_conn
 {
-    public function getAllpersons()
+    public function getAllpersons($filter = [])
     {
+        $where = "";
+        if ($filter['search']) {
+            $where .= " AND (persons.firstname LIKE :search OR persons.nickname LIKE :search) ";
+            $filter['search'] = "%{$filter['search']}%";
+        } else {
+            unset($filter['search']);
+        }
+
+        if ($filter['gender_id']) {
+            $where .= " AND persons.gender_id = :gender_id ";
+        } else {
+            unset($filter['gender_id']);
+        }
+
+        if ($filter['club_id']) {
+            $where .= " AND persons.club_id = :club_id ";
+        } else {
+            unset($filter['club_id']);
+        }
+
         $sql = "
       SELECT
         persons.id,
@@ -18,13 +38,16 @@ class Person extends Db_conn
         persons
         LEFT JOIN refs ON persons.gender_id = refs.id
         LEFT JOIN clubs ON persons.club_id = clubs.id
+      WHERE
+        persons.id > 0
+        {$where}
       ORDER BY
         persons.gender_id,
         persons.dob
       ";
 
         $stmt = $this->connect()->prepare($sql);
-        $stmt->execute();
+        $stmt->execute($filter);
         $data = $stmt->fetchAll();
         if ($data) {
             return $data;
@@ -35,7 +58,7 @@ class Person extends Db_conn
 
     public function add_person($person)
     {
-      $sql = "
+        $sql = "
       INSERT INTO
       persons (
         firstname,
@@ -52,18 +75,18 @@ class Person extends Db_conn
         :club_id,
         :salary)";
 
-      $stmt = $this->connect()->prepare($sql);
-      $result = $stmt->execute($person);
-      if ($result) {
-        return true;
-      } else {
-        return false;
-      }
+        $stmt = $this->connect()->prepare($sql);
+        $result = $stmt->execute($person);
+        if ($result) {
+            return true;
+        } else {
+            return false;
+        }
     }
 
     public function show_edit_person($id)
     {
-      $sql = "
+        $sql = "
       SELECT
         persons.id,
         persons.firstname,
@@ -113,7 +136,7 @@ class Person extends Db_conn
 
     public function delete_person($id)
     {
-      $sql = "
+        $sql = "
       DELETE FROM
         persons
       WHERE

@@ -53,7 +53,7 @@ $clubs = $clubObf->getAllClubs();
             <div class="mb-3">
               <label for="" class="form-label">Club</label>
               <select name="club_id" id="" class="form-control w-50">
-              <option value="<?= $show_edit['club']?>">เลือก</option>
+              <option value="">เลือก</option>
               <?php foreach($clubs as $club) :?>
                 <?php $selected = ($club['id'] == $show_edit['club_id']) ? 'selected' : '';  ?>
                 <option value="<?= $club['id']?>" <?= $selected ?>><?= $club['title']?></option>
