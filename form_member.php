@@ -43,21 +43,21 @@ $clubs = $clubObf->getAllClubs();
             <div class="mb-3">
               <label for="" class="form-label">Gender</label>
               <select name="gender_id" id="" class="form-control w-50">
-              <option value="">เลือก</option>
-              <?php foreach($genders as $gender) :?>
+                <option value="">เลือก</option>
+                <?php foreach($genders as $gender) :?>
                 <?php $selected = ($gender['id'] == $show_edit['gender_id']) ? 'selected' : '';  ?>
                 <option value="<?= $gender['id']?>" <?= $selected ?>><?= $gender['title']?></option>
-              <?php endforeach; ?>
+                <?php endforeach; ?>
               </select>
             </div>
             <div class="mb-3">
               <label for="" class="form-label">Club</label>
               <select name="club_id" id="" class="form-control w-50">
-              <option value="">เลือก</option>
-              <?php foreach($clubs as $club) :?>
+                <option value="">เลือก</option>
+                <?php foreach($clubs as $club) :?>
                 <?php $selected = ($club['id'] == $show_edit['club_id']) ? 'selected' : '';  ?>
                 <option value="<?= $club['id']?>" <?= $selected ?>><?= $club['title']?></option>
-              <?php endforeach; ?>
+                <?php endforeach; ?>
               </select>
             </div>
             <div class="mb-3">
@@ -65,8 +65,9 @@ $clubs = $clubObf->getAllClubs();
               <input type="text" name="salary" id="" class="form-control" value="<?= $show_edit['salary']?>">
             </div>
             <div class="mb-3">
-                <button type="submit" name="submit" class="btn btn-success"><?=($show_edit) ? 'Update' : 'ADD +' ?></button>
-                <a href="index.php" class="btn btn-secondary">Back</a>
+              <button type="submit" name="submit"
+                class="btn btn-success"><?=($show_edit) ? 'Update' : 'ADD +' ?></button>
+              <a href="index.php" class="btn btn-secondary">Back</a>
             </div>
           </form>
         </div>

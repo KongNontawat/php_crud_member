@@ -33,34 +33,35 @@ $clubs = $clubObf->getAllClubs();
             <div class="row">
               <div class="col-3 col-md-3">
                 <div class="input-group">
-                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                <input type="text" name="search" id="" class="form-control" value="<?=($_GET['search']) ? $_GET['search'] : '' ?>">
+                  <span class="input-group-text"><i class="fas fa-search"></i></span>
+                  <input type="text" name="search" id="" class="form-control"
+                    value="<?=($_GET['search']) ? $_GET['search'] : '' ?>">
                 </div>
               </div>
 
               <div class="col-3 col-md-2">
                 <div class="input-group">
-                <span class="input-group-text">เพศ</span>
-                <select name="gender_id" id="" class="form-select">
-                <option value="">ทั้งหมด</option>
-              <?php foreach($genders as $gender) :?>
-                <?php $selected = ($gender['id'] == $_GET['gender_id']) ? 'selected' : '';  ?>
-                <option value="<?= $gender['id']?>" <?= $selected ?>><?= $gender['title']?></option>
-              <?php endforeach; ?>
-              </select>
+                  <span class="input-group-text">เพศ</span>
+                  <select name="gender_id" id="" class="form-select">
+                    <option value="">ทั้งหมด</option>
+                    <?php foreach($genders as $gender) :?>
+                    <?php $selected = ($gender['id'] == $_GET['gender_id']) ? 'selected' : '';  ?>
+                    <option value="<?= $gender['id']?>" <?= $selected ?>><?= $gender['title']?></option>
+                    <?php endforeach; ?>
+                  </select>
                 </div>
               </div>
 
               <div class="col-3 col-md-2">
                 <div class="input-group">
-                <span class="input-group-text">ชมรม</span>
-                <select name="club_id" id="" class="form-select">
-                <option value="">ทั้งหมด</option>
-              <?php foreach($clubs as $club) :?>
-                <?php $selected = ($club['id'] == $_GET['club_id']) ? 'selected' : '';  ?>
-                <option value="<?= $club['id']?>" <?= $selected ?>><?= $club['title']?></option>
-              <?php endforeach; ?>
-              </select>
+                  <span class="input-group-text">ชมรม</span>
+                  <select name="club_id" id="" class="form-select">
+                    <option value="">ทั้งหมด</option>
+                    <?php foreach($clubs as $club) :?>
+                    <?php $selected = ($club['id'] == $_GET['club_id']) ? 'selected' : '';  ?>
+                    <option value="<?= $club['id']?>" <?= $selected ?>><?= $club['title']?></option>
+                    <?php endforeach; ?>
+                  </select>
                 </div>
               </div>
 
@@ -85,20 +86,22 @@ $clubs = $clubObf->getAllClubs();
             </thead>
             <tbody>
               <?php foreach ($persons as $key => $person): ?>
-                <?php $n = $key + 1;?>
-                <tr>
-                  <td><?=$n?></td>
-                  <td><?=$person['firstname']?></td>
-                  <td><?=$person['nickname']?></td>
-                  <td><?=$person['dob']?></td>
-                  <td><?=$person['gender']?></td>
-                  <td><?=$person['club']?></td>
-                  <td><?=$person['salary']?></td>
-                  <td>
-                    <a href="form_member.php?id=<?=$person['id']?>" class="btn btn-warning py-0 px-1"><i class="fas fa-edit"></i></a>
-                    <a href="save_form_member.php?action=delete&id=<?=$person['id']?>" class="btn btn-danger py-0 px-1"><i class="fas fa-trash-alt"></i></a>
-                  </td>
-                </tr>
+              <?php $n = $key + 1;?>
+              <tr>
+                <td><?=$n?></td>
+                <td><?=$person['firstname']?></td>
+                <td><?=$person['nickname']?></td>
+                <td><?=$person['dob']?></td>
+                <td><?=$person['gender']?></td>
+                <td><?=$person['club']?></td>
+                <td><?=$person['salary']?></td>
+                <td>
+                  <a href="form_member.php?id=<?=$person['id']?>" class="btn btn-warning py-0 px-1"><i
+                      class="fas fa-edit"></i></a>
+                  <a href="save_form_member.php?action=delete&id=<?=$person['id']?>" class="btn btn-danger py-0 px-1"><i
+                      class="fas fa-trash-alt"></i></a>
+                </td>
+              </tr>
               <?php endforeach;?>
             </tbody>
           </table>
@@ -109,4 +112,3 @@ $clubs = $clubObf->getAllClubs();
 </div>
 
 <?php include 'components/footer.php';?>
-
