@@ -1,5 +1,5 @@
 <?php
-// error_reporting(0);
+error_reporting(0);
 
 require_once 'classes/Persons.php';
 require_once 'classes/Ref.php';
@@ -34,8 +34,9 @@ $clubs = $clubObf->getAllClubs();
               <div class="col-3 col-md-3">
                 <div class="input-group">
                   <span class="input-group-text"><i class="fas fa-search"></i></span>
-                  <input type="text" name="search" id="" class="form-control"
-                    value="<?=($_GET['search']) ? $_GET['search'] : '' ?>">
+                  <input type="text" name="search" id="search" class="form-control border-end-0"
+                    value="<?=(isset($_GET['search'])) ? $_GET['search'] : '' ?>">
+                  <button class="btn border border-start-0" type="button" onclick="document.getElementById('search').value = '';">X</button>
                 </div>
               </div>
 
@@ -75,6 +76,7 @@ $clubs = $clubObf->getAllClubs();
             <thead class="table-light">
               <tr>
                 <th>#</th>
+                <th>Img</th>
                 <th>Firstname</th>
                 <th>Nickname</th>
                 <th>DOB</th>
@@ -89,6 +91,11 @@ $clubs = $clubObf->getAllClubs();
               <?php $n = $key + 1;?>
               <tr>
                 <td><?=$n?></td>
+                <td>
+                  <?php if(isset($person['img_path'])) : ?>
+                  <img src="<?=$person['img_path']?>" style="width: 50px;" class="">
+                  <?php endif; ?>
+                </td>
                 <td><?=$person['firstname']?></td>
                 <td><?=$person['nickname']?></td>
                 <td><?=$person['dob']?></td>
@@ -96,9 +103,9 @@ $clubs = $clubObf->getAllClubs();
                 <td><?=$person['club']?></td>
                 <td><?=$person['salary']?></td>
                 <td>
-                  <a href="form_member.php?id=<?=$person['id']?>" class="btn btn-warning py-0 px-1"><i
+                  <a href="form_member.php?id=<?=$person['id']?>" class="btn btn-warning p-1"><i
                       class="fas fa-edit"></i></a>
-                  <a href="save_form_member.php?action=delete&id=<?=$person['id']?>" class="btn btn-danger py-0 px-1"><i
+                  <a href="save_form_member.php?action=delete&id=<?=$person['id']?>" class="btn btn-danger p-1"><i
                       class="fas fa-trash-alt"></i></a>
                 </td>
               </tr>

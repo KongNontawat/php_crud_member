@@ -33,7 +33,8 @@ class Person extends Db_conn
         persons.dob,
         persons.salary,
         refs.title AS gender,
-        clubs.title AS club
+        clubs.title AS club,
+        img_path
       FROM
         persons
         LEFT JOIN refs ON persons.gender_id = refs.id
@@ -66,14 +67,16 @@ class Person extends Db_conn
         dob,
         gender_id,
         club_id,
-        salary)
+        salary,
+        img_path)
       VALUES (
         :firstname,
         :nickname,
         :dob,
         :gender_id,
         :club_id,
-        :salary)";
+        :salary,
+        :img_path)";
 
         $stmt = $this->connect()->prepare($sql);
         $result = $stmt->execute($person);
@@ -94,7 +97,8 @@ class Person extends Db_conn
         persons.dob,
         persons.salary,
         persons.gender_id,
-        persons.club_id
+        persons.club_id,
+        persons.img_path
       FROM
         persons
       WHERE
@@ -120,7 +124,8 @@ class Person extends Db_conn
         persons.dob = :dob,
         persons.salary = :salary,
         persons.gender_id = :gender_id,
-        persons.club_id = :club_id
+        persons.club_id = :club_id,
+        persons.img_path = :img_path
       WHERE
         id = :id
       ";
