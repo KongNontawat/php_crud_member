@@ -3,6 +3,7 @@ error_reporting(0);
 require_once 'classes/Persons.php';
 require_once 'classes/Ref.php';
 require_once 'classes/Club.php';
+include 'components/check_login.php';
 
 $personObf = new Person();
 $persons = $personObf->getAllpersons();

@@ -1,6 +1,7 @@
 <?php 
-
 require_once 'classes/Persons.php';
+include 'components/check_login.php';
+
 $personObj = new Person();
 
 if ($_FILES['upload_img']['tmp_name']) {

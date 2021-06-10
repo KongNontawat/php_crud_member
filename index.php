@@ -1,9 +1,10 @@
 <?php
 error_reporting(0);
-
+session_start();
 require_once 'classes/Persons.php';
 require_once 'classes/Ref.php';
 require_once 'classes/Club.php';
+include 'components/check_login.php';
 
 $personObf = new Person();
 $genderObj = new Ref();
@@ -67,7 +68,7 @@ $clubs = $clubObf->getAllClubs();
               </div>
 
               <div class="col-1">
-                <button type="submit" name="search_submit" class="btn btn-primary">ค้นหา</button>
+                <button type="submit" name="search_submit" class="btn btn-secondary">ค้นหา</button>
               </div>
             </div>
           </form>
